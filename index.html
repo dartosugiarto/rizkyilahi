@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Besi Risky Ilahi - Solusi Kebutuhan Besi Anda</title>
+    <title>Toko Besi Risky Ilahi - Kualitas & Profesionalisme</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 
     <header class="header">
         <div class="container">
-            <h1 class="logo">Risky Ilahi</h1>
+            <a href="#" class="logo">RISKY ILAHI</a>
             <nav class="navbar">
-                <a href="#produk">Produk</a>
-                <a href="#tentang">Tentang Kami</a>
-                <a href="#kontak">Kontak</a>
+                <a href="#produk" class="nav-link">Produk</a>
+                <a href="#tentang" class="nav-link">Tentang</a>
+                <a href="#kontak" class="nav-link cta-button">Hubungi Kami</a>
             </nav>
         </div>
     </header>
@@ -25,36 +26,57 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h2>Solusi Terlengkap Kebutuhan Besi dan Baja</h2>
-                <p>Kualitas terjamin dengan harga kompetitif.</p>
+                <h1 class="hero-title">Partner Konstruksi Terpercaya Anda.</h1>
+                <p class="hero-subtitle">Menyediakan besi dan baja berkualitas premium untuk setiap skala proyek.</p>
+                <a href="#produk" class="hero-cta">Lihat Katalog</a>
             </div>
         </section>
 
-        <section id="produk" class="produk-section">
+        <section id="produk" class="product-section">
             <div class="container">
-                <h3>Katalog Produk Kami</h3>
+                <div class="section-header">
+                    <h2 class="section-title">Produk Unggulan</h2>
+                    <p class="section-subtitle">Material pilihan untuk hasil konstruksi terbaik.</p>
+                </div>
                 <div id="product-grid" class="product-grid">
-                    <div class="loader"></div>
+                    <div class="loader-wrapper"><div class="loader"></div></div>
                 </div>
             </div>
         </section>
 
-        <section id="tentang" class="tentang-section">
-             <div class="container">
-                <h3>Tentang Toko Besi Risky Ilahi</h3>
-                <p>Kami adalah distributor dan supplier besi terpercaya yang telah melayani berbagai proyek konstruksi sejak tahun 2010. Komitmen kami adalah menyediakan produk berkualitas tinggi dengan pelayanan profesional.</p>
+        <section id="tentang" class="about-section">
+             <div class="container-narrow">
+                <div class="section-header">
+                    <h2 class="section-title">Komitmen Pada Kualitas</h2>
+                    <p class="section-subtitle">Sejak 2010, Toko Besi Risky Ilahi menjadi pilar dalam penyediaan material konstruksi di Bandung. Kami percaya bahwa fondasi yang kuat dimulai dari material yang berkualitas. Integritas, profesionalisme, dan kepuasan pelanggan adalah inti dari bisnis kami.</p>
+                </div>
              </div>
         </section>
     </main>
 
     <footer id="kontak" class="footer">
         <div class="container">
-            <p><strong>Hubungi Kami:</strong></p>
-            <p>Email: info@riskyilahi.com | Telepon: (021) 123-4567</p>
-            <p>&copy; 2025 Toko Besi Risky Ilahi. Semua Hak Cipta Dilindungi.</p>
+            <div class="footer-content">
+                 <div class="footer-brand">
+                    <h3 class="logo-footer">RISKY ILAHI</h3>
+                    <p>Solusi material besi dan baja.</p>
+                </div>
+                <div class="footer-contact">
+                    <h3>Hubungi Kami</h3>
+                    <p><i data-feather="map-pin"></i> Jl. Industri Besi No. 42, Bandung, Indonesia</p>
+                    <p><i data-feather="phone"></i> (021) 123-4567</p>
+                    <p><i data-feather="mail"></i> sales@riskyilahi.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Toko Besi Risky Ilahi. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+      feather.replace()
+    </script>
 </body>
 </html>
