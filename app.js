@@ -1,80 +1,123 @@
-// Tahun di footer
-document.getElementById('year').textContent = new Date().getFullYear();
+// Tahun footer
+document.addEventListener('DOMContentLoaded', () => {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
 
-// Drawer / Hamburger: simple & elegan
-const drawer = document.getElementById('drawer');
-const backdrop = document.getElementById('backdrop');
-const hamburger = document.getElementById('hamburger');
-const closeDrawer = document.getElementById('closeDrawer');
+// Inject header/footer pada halaman selain index (untuk konsistensi)
+(function includePartials(){
+  const headerHTML = `
+  <header class="header" aria-label="Navigasi utama">
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">RI</div>
+        <p class="brand-title">Toko Besi Rizky Ilahi</p>
+      </div>
+      <nav class="menu" aria-label="Menu utama">
+        <a href="index.html" data-nav="home">Beranda</a>
+        <a href="produk.html" data-nav="produk">Produk</a>
+        <a href="layanan.html" data-nav="layanan">Layanan</a>
+        <a href="tentang.html" data-nav="tentang">Tentang</a>
+        <a href="kontak.html" class="btn btn--accent"><span class="icon">chat</span> Minta Penawaran</a>
+      </nav>
+      <button id="hamburger" class="hamburger" aria-label="Buka menu" aria-controls="drawer" aria-expanded="false">
+        <span class="icon">menu</span>
+      </button>
+    </div>
+    <aside id="drawer" class="drawer" aria-hidden="true">
+      <div class="drawer-head">
+        <div class="brand"><div class="logo" aria-hidden="true">RI</div><strong>Toko Besi Rizky Ilahi</strong></div>
+        <button id="closeDrawer" class="icon-btn" aria-label="Tutup menu"><span class="icon">close</span></button>
+      </div>
+      <nav class="drawer-nav">
+        <a href="index.html" data-nav="home">Beranda</a>
+        <a href="produk.html" data-nav="produk">Produk</a>
+        <a href="layanan.html" data-nav="layanan">Layanan</a>
+        <a href="tentang.html" data-nav="tentang">Tentang</a>
+        <a href="kontak.html" class="btn btn--accent w-100"><span class="icon">chat</span> Chat WhatsApp</a>
+      </nav>
+    </aside>
+    <div id="backdrop" class="backdrop" hidden></div>
+  </header>`;
 
-function openDrawer(){
-  drawer.classList.add('open');
-  drawer.setAttribute('aria-hidden','false');
-  hamburger.setAttribute('aria-expanded','true');
-  backdrop.hidden = false;
-  document.body.style.overflow = 'hidden';
-}
-function closeDrawerFn(){
-  drawer.classList.remove('open');
-  drawer.setAttribute('aria-hidden','true');
-  hamburger.setAttribute('aria-expanded','false');
-  backdrop.hidden = true;
-  document.body.style.overflow = '';
-}
+  const footerHTML = `
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">RI</div>
+        <p class="muted">© <span id="year"></span> Toko Besi Rizky Ilahi</p>
+      </div>
+      <p class="muted">Tipografi: Plus Jakarta Sans & Inter</p>
+    </div>
+  </footer>`;
 
-hamburger?.addEventListener('click', openDrawer);
-closeDrawer?.addEventListener('click', closeDrawerFn);
-backdrop?.addEventListener('click', closeDrawerFn);
-window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeDrawerFn(); });
+  document.querySelectorAll('[data-include="header"]').forEach(el => el.outerHTML = headerHTML);
+  document.querySelectorAll('[data-include="footer"]').forEach(el => el.outerHTML = footerHTML);
 
-// Form → WhatsApp deep link (ringkas & jelas)
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+
+// Tandai nav aktif (menu & drawer)
+(function setActiveNav(){
+  const page = document.body.getAttribute('data-page');
+  if (!page) return;
+  const mark = sel => document.querySelectorAll(sel).forEach(a => {
+    if (a.dataset.nav === page) a.setAttribute('aria-current','page');
+  });
+  mark('.menu a[data-nav]');
+  mark('.drawer-nav a[data-nav]');
+})();
+
+// Drawer / Hamburger
+(function drawer(){
+  const drawer = document.getElementById('drawer');
+  const backdrop = document.getElementById('backdrop');
+  const hamburger = document.getElementById('hamburger');
+  const closeDrawer = document.getElementById('closeDrawer');
+  if(!drawer || !hamburger) return;
+
+  const open = () => {
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden','false');
+    hamburger.setAttribute('aria-expanded','true');
+    if (backdrop) backdrop.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden','true');
+    hamburger.setAttribute('aria-expanded','false');
+    if (backdrop) backdrop.hidden = true;
+    document.body.style.overflow = '';
+  };
+
+  hamburger.addEventListener('click', open);
+  closeDrawer?.addEventListener('click', close);
+  backdrop?.addEventListener('click', close);
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+})();
+
+// Form WhatsApp
 function sendWA(form){
   const nama = form.nama.value.trim();
   const produk = form.produk.value.trim();
   const catatan = form.catatan.value.trim();
-  const msg = encodeURIComponent(
-    `Halo Toko Besi Rizky Ilahi,\nSaya ${nama}.\nProduk: ${produk}\nCatatan: ${catatan}`
-  );
-  const phone = '6281234567890'; // GANTI ke nomor WA
+  const msg = encodeURIComponent(`Halo Toko Besi Rizky Ilahi,\nSaya ${nama}.\nProduk: ${produk}\nCatatan: ${catatan}`);
+  const phone = '6281234567890'; // ganti ke nomor WA
   window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
   return false;
 }
 window.sendWA = sendWA;
 
-// === OPSIONAL: isi grid produk dari Google Sheet (CSV publish) ===
-// 1) Publish sheet -> URL CSV
-// 2) Kolom: image,name,badge,meta,wa
-const CSV_URL = ''; // contoh: 'https://docs.google.com/spreadsheets/d/e/.../pub?gid=0&single=true&output=csv'
-
-async function fetchCSV(){
-  if(!CSV_URL) return;
-  const res = await fetch(CSV_URL);
-  const text = await res.text();
-  const rows = text.trim().split(/\r?\n/).map(r => r.split(','));
-  const header = rows.shift().map(h => h.trim().toLowerCase());
-  const data = rows.map(r => Object.fromEntries(r.map((v,i)=>[header[i], v])));
-
-  const grid = document.getElementById('productGrid');
-  grid.innerHTML = '';
-  for(const item of data){
-    const meta = (item.meta||'').split('|').map(s=>s.trim()).filter(Boolean).join(' • ');
-    grid.insertAdjacentHTML('beforeend', `
-      <article class="card">
-        <img loading="lazy" decoding="async"
-             src="${item.image}?tr=w-900"
-             srcset="${item.image}?tr=w-540 540w, ${item.image}?tr=w-900 900w, ${item.image}?tr=w-1200 1200w"
-             sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
-             width="900" height="675" alt="${item.name}">
-        <div class="content">
-          <p class="badge">${item.badge||''}</p>
-          <h3 class="h3">${item.name||''}</h3>
-          <p class="meta">${meta}</p>
-          <div class="actions">
-            <a class="btn btn--ghost" href="${item.wa||'#'}"><span class="icon">price_check</span> Tanya harga</a>
-          </div>
-        </div>
-      </article>
-    `);
-  }
-}
-// fetchCSV(); // aktifkan jika sudah ada CSV
+// Ken Burns hanya saat terlihat (hemat baterai)
+(function lazyKenburns(){
+  const items = document.querySelectorAll('[data-kenburns]');
+  if(!('IntersectionObserver' in window) || !items.length) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('kenburns'); }
+    });
+  }, {threshold: .35});
+  items.forEach(el=>io.observe(el));
+})();
