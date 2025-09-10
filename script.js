@@ -3,69 +3,79 @@ document.addEventListener('DOMContentLoaded', function() {
     const googleSheetURL = 'URL_CSV_ANDA';
 
     const productGrid = document.getElementById('product-grid');
-    const loader = document.querySelector('.loader');
+    if (!productGrid) return; // Exit if the grid element doesn't exist
 
-    // Fungsi untuk mengubah data CSV menjadi objek JSON
+    const loaderWrapper = document.querySelector('.loader-wrapper');
+
+    // Fungsi untuk mengubah data CSV menjadi array objek JSON
     function csvToJSON(csv) {
-        const lines = csv.split('\n');
+        const lines = csv.trim().split('\n');
+        if (lines.length < 2) return []; // No data rows
+        
+        const headers = lines[0].split(',').map(h => h.trim());
         const result = [];
-        const headers = lines[0].split(',').map(header => header.trim());
 
         for (let i = 1; i < lines.length; i++) {
-            if (!lines[i]) continue;
             const obj = {};
             const currentline = lines[i].split(',');
 
-            for (let j = 0; j < headers.length; j++) {
-                obj[headers[j]] = currentline[j] ? currentline[j].trim() : '';
-            }
+            headers.forEach((header, j) => {
+                obj[header] = currentline[j] ? currentline[j].trim().replace(/"/g, '') : '';
+            });
             result.push(obj);
         }
         return result;
     }
 
-    // Fungsi untuk menampilkan produk
+    // Fungsi untuk membuat dan menampilkan kartu produk
     function displayProducts(products) {
-        // Hapus loader
-        loader.style.display = 'none';
+        if (loaderWrapper) {
+            loaderWrapper.style.display = 'none';
+        }
 
         if (!products || products.length === 0) {
-            productGrid.innerHTML = '<p>Gagal memuat produk. Silakan coba lagi nanti.</p>';
+            productGrid.innerHTML = '<p>Produk tidak ditemukan atau gagal dimuat.</p>';
             return;
         }
 
+        // Asumsikan nama kolom di Google Sheet adalah: namaProduk, harga, deskripsi, urlGambar
         products.forEach(product => {
-            // Asumsikan nama kolom di Google Sheet adalah: namaProduk, harga, deskripsi, urlGambar
             const card = document.createElement('div');
             card.className = 'product-card';
 
             card.innerHTML = `
-                <img src="${product.urlGambar}" alt="${product.namaProduk}" class="product-image">
+                <img src="${product.urlGambar || 'https://via.placeholder.com/300x220.png?text=No+Image'}" alt="${product.namaProduk}" class="product-image">
                 <div class="product-info">
-                    <h4>${product.namaProduk}</h4>
-                    <div class="price">${product.harga}</div>
-                    <p>${product.deskripsi}</p>
+                    <h4>${product.namaProduk || 'Nama Produk'}</h4>
+                    <div class="price">${product.harga || 'Harga Hubungi'}</div>
+                    <p>${product.deskripsi || 'Deskripsi tidak tersedia.'}</p>
                 </div>
             `;
             productGrid.appendChild(card);
         });
     }
 
-    // Mengambil data dari Google Sheet
-    fetch(googleSheetURL)
-        .then(response => {
+    // Mengambil dan memproses data
+    async function fetchProducts() {
+        try {
+            const response = await fetch(googleSheetURL);
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(`Network response was not ok: ${response.statusText}`);
             }
-            return response.text();
-        })
-        .then(csvText => {
+            const csvText = await response.text();
             const products = csvToJSON(csvText);
             displayProducts(products);
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error fetching or parsing data:', error);
-            loader.style.display = 'none';
-            productGrid.innerHTML = '<p>Terjadi kesalahan saat memuat produk. Periksa kembali URL Google Sheet dan pastikan sudah dipublikasikan dengan benar.</p>';
-        });
+            if (loaderWrapper) {
+                loaderWrapper.style.display = 'none';
+            }
+            productGrid.innerHTML = '<p>Terjadi kesalahan saat memuat produk. Silakan coba lagi nanti.</p>';
+        }
+    }
+
+    fetchProducts();
+    
+    // Icon library execution
+    feather.replace();
 });
