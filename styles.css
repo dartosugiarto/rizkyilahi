@@ -1,270 +1,142 @@
-/* ===================================================================
-   Toko Besi Rizky Ilahi – styles.css (PRO EDITION)
-   Prinsip: Minimalis, flat, premium, cepat dipahami, ala Google.
-   =================================================================== */
-
-/* ----------------------------- TOKENS ----------------------------- */
+/* ===== TOKENS: Platinum Gray (flat premium) ===== */
 :root{
-  /* Neutrals (Dark default) – Graphite family (flat) */
-  --bg:#0a0b0d;
-  --surface:#101216;
-  --card:#12141a;
-  --elev:color-mix(in oklab, var(--surface) 96%, black);
+  --bg:#0b0c0e; --surface:#121417; --card:#14171b; --elev:#171b20;
+  --border:#20252c; --divider:#262b33;
+  --text:#eef1f4; --muted:#a7b0bb; --link:#f3f6f9;
+  --accent:#9aa3ad; --accent-2:#c0c7cf;
 
-  --border:#1b2027;                /* outline halus */
-  --divider:color-mix(in oklab, var(--border) 80%, transparent);
+  --r-sm:10px; --r-md:12px; --r-lg:14px;
+  --maxw:1200px; --container-pad:20px;
 
-  --text:#eceff3;                  /* teks utama */
-  --muted:#a5aeba;                 /* teks sekunder */
-  --link:#e6e9ee;                  /* link/plain hover */
-
-  /* Accent – Brass flat (mewah tanpa glare) */
-  --accent:#9c8653;
-  --accent-2:#cbb680;
-
-  /* Radius & elevation (flat tapi tetap refined) */
-  --r-sm:10px;
-  --r-md:12px;
-  --r-lg:14px;
-
-  /* Type & spacing */
   --font-body: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
   --font-display: "Plus Jakarta Sans", Inter, sans-serif;
 
-  --fs-12:12px;
-  --fs-14:14px;
-  --fs-16:16px;
-  --fs-18:clamp(17px, 1.6vw, 18px);
-  --fs-20:clamp(18px, 1.8vw, 20px);
-  --fs-24:clamp(20px, 2.2vw, 24px);
-  --fs-32:clamp(26px, 3vw, 32px);
-  --fs-40:clamp(30px, 3.6vw, 40px);
+  --fs-18:clamp(17px,1.6vw,18px);
+  --fs-22:clamp(20px,2vw,22px);
+  --fs-40:clamp(30px,3.4vw,40px);
 
-  --lh:1.6;
-  --tracking:.01em;
-
-  /* Motion – cepat & subtle */
-  --dur:.18s;
-  --ease:cubic-bezier(.2,.7,.2,1);
-
-  /* Layout */
-  --maxw:1200px;
-  --container-pad:20px;
+  --lh:1.6; --dur:.18s; --ease:cubic-bezier(.2,.7,.2,1);
 }
 @media (prefers-color-scheme: light){
   :root{
-    --bg:#f7f8fa;
-    --surface:#ffffff;
-    --card:#ffffff;
-    --elev:#ffffff;
-
-    --border:#e3e6ec;
-    --divider:#ebedf2;
-
-    --text:#14171a;
-    --muted:#5f6671;
-    --link:#1b1f24;
-
-    --accent:#8f794e;
-    --accent-2:#cbb680;
+    --bg:#f7f8fa; --surface:#ffffff; --card:#ffffff; --elev:#ffffff;
+    --border:#e3e6ec; --divider:#eceff3;
+    --text:#121418; --muted:#616a75; --link:#111417;
+    --accent:#6f7a86; --accent-2:#98a3ad;
   }
 }
 
-/* ----------------------------- RESET ------------------------------ */
+/* ===== RESET & BASE ===== */
 *{box-sizing:border-box}
 html:focus-within{scroll-behavior:smooth}
-body{
-  margin:0; min-height:100vh;
-  background:var(--bg); color:var(--text);
-  font-family:var(--font-body); line-height:var(--lh); letter-spacing:var(--tracking);
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-}
-img{max-width:100%; display:block}
-a{color:inherit; text-decoration:none}
-button,input,select,textarea{font:inherit; color:inherit}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:var(--lh);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+em,i{font-style:normal} /* tidak ada italic */
 
-/* ---------------------------- UTILITIES --------------------------- */
-.container{max-width:var(--maxw); margin-inline:auto; padding-inline:var(--container-pad)}
+.container{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--container-pad)}
+.section-pad{padding:32px 0}
 .muted{color:var(--muted)}
-.h2{font:700 var(--fs-20)/1.25 var(--font-display); margin:0}
-.h3{font:700 var(--fs-16)/1.28 var(--font-display); margin:0}
+.h2{font:700 var(--fs-22)/1.25 var(--font-display);margin:0}
+.h3{font:700 16px/1.28 var(--font-display);margin:0}
+.title{font:800 var(--fs-40)/1.12 var(--font-display);margin:6px 0 6px}
+.subtitle{color:var(--muted);max-width:62ch;margin:0 0 14px}
+.badge{font-size:12px;color:var(--muted);margin:0}
 
-.link{display:inline-flex; gap:8px; align-items:center; color:var(--muted)}
+.icon{font-family:'Material Symbols Rounded';font-variation-settings:"FILL" 0;font-size:20px;line-height:1;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px}
+.link{display:inline-flex;gap:8px;align-items:center;color:var(--muted)}
 .link:hover{color:var(--link)}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:16px;top:16px;width:auto;height:auto;background:var(--surface);padding:8px 12px;border-radius:8px;z-index:9999;border:1px solid var(--border)}
 
-.icon{
-  font-family:'Material Symbols Rounded';
-  font-variation-settings:"FILL" 0;
-  font-size:20px; line-height:1;
-  display:inline-flex; align-items:center; justify-content:center;
-  width:24px; height:24px;
-}
-
-/* Fokus halus tapi jelas (AA) */
-:where(a,button,input,textarea,.btn,.icon-btn,.menu a){outline:none}
-:where(a,button,input,textarea,.btn,.icon-btn,.menu a):focus-visible{
-  outline:2px solid var(--accent); outline-offset:2px; border-radius:8px;
-}
-
-/* Skip link – aksesibilitas keyboard */
-.skip-link{
-  position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
-}
-.skip-link:focus{
-  left:16px; top:16px; width:auto; height:auto;
-  background:var(--surface); padding:8px 12px; border-radius:8px; z-index:9999;
-  border:1px solid var(--border);
-}
-
-/* ----------------------------- BUTTONS ---------------------------- */
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 14px; min-height:40px;
-  background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md);
-  transition:background var(--dur) var(--ease), transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-.btn:hover{transform:translateY(-1px); border-color:var(--divider)}
-.btn--accent{background:var(--accent); color:#111; border-color:transparent}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;min-height:40px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);transition:background var(--dur) var(--ease),transform var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.btn:hover{transform:translateY(-1px);border-color:var(--divider)}
+.btn--accent{background:var(--accent);color:#111;border-color:transparent}
 .btn--accent:hover{background:var(--accent-2)}
 .btn--ghost{background:transparent}
 .w-100{width:100%}
-.icon-btn{border:1px solid var(--border); background:var(--surface); border-radius:var(--r-sm); padding:8px}
 
-/* ------------------------------ HEADER ---------------------------- */
-.header{
-  position:sticky; top:0; z-index:40;
-  border-bottom:1px solid var(--border);
-  background:color-mix(in oklab, var(--bg) 92%, transparent);
-  backdrop-filter:saturate(1.05) blur(6px);
-}
-.nav{display:flex; align-items:center; justify-content:space-between; height:64px}
-.brand{display:flex; align-items:center; gap:12px}
-.logo{
-  width:36px; height:36px; border-radius:10px;
-  background:var(--accent); color:#111; display:grid; place-items:center; font-weight:800;
-}
-.brand-title{margin:0; font:700 var(--fs-18)/1 var(--font-display)}
-.menu{display:flex; align-items:center; gap:12px}
-.menu a{
-  padding:8px 10px; border-radius:10px; color:var(--muted);
-  border:1px solid transparent; transition:color var(--dur) var(--ease), border-color var(--dur) var(--ease);
-}
-.menu a:hover,.menu a:focus-visible{color:var(--link); border-color:var(--border)}
-.hamburger{display:none; border:1px solid var(--border); background:var(--surface); border-radius:10px; padding:8px}
+/* ===== Header & Nav ===== */
+.header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:saturate(1.05) blur(6px)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:36px;height:36px;border-radius:10px;background:var(--accent);color:#111;display:grid;place-items:center;font-weight:800}
+.brand-title{margin:0;font:700 var(--fs-18)/1 var(--font-display)}
+.menu{display:flex;align-items:center;gap:12px}
+.menu a{padding:8px 10px;border-radius:10px;color:var(--muted);border:1px solid transparent;transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.menu a:hover,.menu a:focus-visible{color:var(--link);border-color:var(--border)}
+.menu a[aria-current="page"]{color:var(--link);border-color:var(--border)}
+.hamburger{display:none;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:8px}
 
-/* ------------------------------ DRAWER ---------------------------- */
-.drawer{
-  position:fixed; inset:0 0 0 auto; transform:translateX(100%);
-  transition:transform var(--dur) var(--ease); z-index:100;
-  width:min(80vw, 320px);
-  background:var(--surface); border-left:1px solid var(--border);
-  display:flex; flex-direction:column; padding:16px;
-}
+/* ===== Drawer (Hamburger) ===== */
+.drawer{position:fixed;inset:0 0 0 auto;transform:translateX(100%);transition:transform var(--dur) var(--ease);z-index:100;width:min(82vw,340px);background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;padding:16px}
 .drawer.open{transform:none}
-.drawer-head{display:flex; align-items:center; justify-content:space-between; padding:6px 4px 14px; border-bottom:1px solid var(--divider)}
-.drawer-nav{display:grid; padding:10px}
-.drawer-nav a{
-  display:block; padding:12px 10px; border-radius:8px; font-size:16px; font-weight:500; color:var(--text);
-}
-.drawer-nav a:hover{background:var(--card); color:var(--accent)}
-.drawer-nav .btn{margin-top:12px; width:100%; justify-content:center}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 14px;border-bottom:1px solid var(--divider)}
+.drawer-nav{display:grid;gap:8px;padding:10px}
+.drawer-nav a{display:block;padding:12px 12px;border-radius:10px;font-size:16px;font-weight:600;background:var(--card);color:var(--text);border:1px solid var(--border);transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.drawer-nav a:hover{background:var(--elev);border-color:var(--divider);color:var(--accent)}
+.drawer-nav .btn{width:100%;justify-content:center;margin-top:6px}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);z-index:90}
 
-.backdrop{
-  position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px);
-  z-index:90;
-}
-
-/* ------------------------------- HERO ----------------------------- */
+/* ===== Hero & Feature Card ===== */
 .hero{padding:56px 0 24px}
-.kicker{color:var(--accent); font-weight:600; letter-spacing:.2px; margin:0}
-.title{font:800 var(--fs-40)/1.12 var(--font-display); margin:6px 0 6px}
-.subtitle{color:var(--muted); max-width:62ch; margin:0 0 14px}
-.hero-cta{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 6px}
+.hero--tight{padding:40px 0 16px}
+.feature-card{display:grid;gap:12px;grid-template-columns:1fr;align-items:stretch;border:1px solid var(--border);border-radius:var(--r-lg);background:var(--card);overflow:hidden}
+.feature-card .media{position:relative;max-height:min(56vh,520px);background:#0b0c0f}
+.feature-card img{width:100%;height:100%;object-fit:cover;display:block}
+.feature-card .details{padding:14px;display:grid;gap:8px}
 
-/* Benefit bullets – semantis & ringkas */
-.benefits{display:flex; gap:16px; flex-wrap:wrap; padding:0; margin:10px 0 0; list-style:none; color:var(--muted)}
-.benefits li{display:inline-flex; gap:8px; align-items:center}
-
-/* --------------------------- SECTION HEAD ------------------------- */
-.section-head{
-  display:flex; align-items:center; justify-content:space-between;
-  padding-top:12px; padding-bottom:10px;
+/* Ken Burns elegan (aktif saat terlihat via JS) */
+.kenburns img{transform-origin:50% 55%;animation:kenburns 9s var(--ease) 0s 1 both}
+@keyframes kenburns{
+  from{transform:scale(1.02);filter:saturate(95%)}
+  to{transform:scale(1.08);filter:saturate(100%)}
+}
+@media (prefers-reduced-motion: reduce){
+  .kenburns img{animation:none}
 }
 
-/* --------------------------- PRODUCT GRID ------------------------- */
-.grid{display:grid; gap:12px}
-.card{
-  border:1px solid var(--border); border-radius:var(--r-lg);
-  background:var(--card); overflow:hidden; display:flex; flex-direction:column;
-  content-visibility:auto; /* perf: skip paint ketika offscreen */
-}
-.card img{aspect-ratio:4/3; object-fit:cover; background:#0b0c0f}
-.card .content{padding:12px; display:grid; gap:6px}
-.badge{font-size:var(--fs-12); color:var(--muted); margin:0}
-.meta{color:var(--muted); font-size:13px; margin:0}
+/* ===== Grid, Features, Forms ===== */
+.grid{display:grid;gap:12px}
+.card{border:1px solid var(--border);border-radius:var(--r-lg);background:var(--card);overflow:hidden;display:flex;flex-direction:column;content-visibility:auto}
+.card img{aspect-ratio:4/3;object-fit:cover;background:#0b0c0f}
+.card .content{padding:12px;display:grid;gap:6px}
+.meta{color:var(--muted);font-size:13px;margin:0}
 .actions{margin-top:6px}
 
-/* ----------------------------- FEATURES --------------------------- */
-.features{display:grid; gap:10px; padding-inline:var(--container-pad)}
-.feature{
-  display:flex; gap:10px; padding:12px;
-  border:1px dashed var(--border); border-radius:var(--r-md); background:var(--card);
-}
+.features{display:grid;gap:10px;padding-inline:var(--container-pad)}
+.feature{display:flex;gap:10px;padding:12px;border:1px dashed var(--border);border-radius:var(--r-md);background:var(--card)}
 
-/* ------------------------------- COLS ----------------------------- */
-.cols{display:grid; gap:16px; padding-inline:var(--container-pad)}
-.note{border:1px solid var(--border); border-radius:var(--r-md); background:var(--card); padding:14px}
+.cols{display:grid;gap:16px;padding-inline:var(--container-pad)}
+.note{border:1px solid var(--border);border-radius:var(--r-md);background:var(--card);padding:14px}
 
-/* ------------------------------- FORM ----------------------------- */
-.form{display:grid; gap:10px}
-.field{display:grid; gap:6px}
-.input{
-  background:var(--surface); color:var(--text);
-  border:1px solid var(--border); padding:10px 12px; border-radius:10px;
-}
-.input:focus{outline:2px solid var(--accent); outline-offset:2px}
+.form{display:grid;gap:10px}
+.field{display:grid;gap:6px}
+.input{background:var(--surface);color:var(--text);border:1px solid var(--border);padding:10px 12px;border-radius:10px}
+.input:focus{outline:2px solid var(--accent);outline-offset:2px}
 
-/* ------------------------------ FOOTER ---------------------------- */
-.footer{border-top:1px solid var(--border); padding:24px 0}
-.footer-wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+/* ===== Footer ===== */
+.footer{border-top:1px solid var(--border);padding:24px 0}
+.footer-wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-/* ----------------------------- RESPONSIVE ------------------------- */
+/* ===== Responsive ===== */
 @media (min-width:640px){
   .grid{grid-template-columns:repeat(2,1fr)}
   .features{grid-template-columns:repeat(2,1fr)}
   .cols{grid-template-columns:1.05fr .95fr}
-  .title{font-size:var(--fs-40)}
 }
 @media (min-width:960px){
   .menu{display:flex}
   .hamburger{display:none}
   .grid{grid-template-columns:repeat(3,1fr)}
+  .feature-card{grid-template-columns:1.1fr .9fr}
 }
 @media (max-width:959.98px){
   .menu{display:none}
   .hamburger{display:inline-grid}
 }
 
-/* ------------------------- ACCESSIBILITY EXTRAS ------------------- */
-/* Reduced motion */
+/* Preferensi aksesibilitas */
 @media (prefers-reduced-motion: reduce){
-  *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
-}
-
-/* Increased contrast – perkuat outline & teks sekunder */
-@media (prefers-contrast: more){
-  :root{ --muted: color-mix(in oklab, var(--text) 76%, black); }
-  .menu a{ color: var(--muted); }
-  .drawer-nav a{ color: var(--text); }
-}
-
-/* iOS safe-area for sticky header spacing (notch) */
-@supports(padding:max(0px)){
-  .header{ padding-top: max(0px, env(safe-area-inset-top)); }
-}
-
-/* Print minimal – hemat tinta, tetap terbaca */
-@media print{
-  .header, .hamburger, .drawer, .backdrop, .hero-cta, .actions{ display:none !important; }
-  a::after{ content:" (" attr(href) ")"; font-size:12px; color:#666; }
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
 }
