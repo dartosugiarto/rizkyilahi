@@ -8,154 +8,206 @@
   <meta property="og:title" content="Toko Besi Rizky Ilahi" />
   <meta property="og:description" content="Besi & bahan konstruksi berkualitas. Harga bersaing. Kirim cepat." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#111111" />
+  <meta name="theme-color" content="#0b0c0f" />
 
-  <!-- Fonts: Plus Jakarta Sans (heading) & Inter (body). Swap for performance -->
+  <!-- Fonts: Plus Jakarta Sans (heading) & Inter (body), Material Symbols (ikon Google) -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@0..1&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== CSS RESET (kecil tapi cukup) ===== */
+    /* ===== CSS RESET ringkas ===== */
     *,*::before,*::after{box-sizing:border-box}
     html:focus-within{scroll-behavior:smooth}
     body{margin:0;min-height:100vh;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
     button,input,select,textarea{font:inherit}
+
+    /* ===== Design tokens (Google-ish premium) ===== */
     :root{
-      --bg:#0f0f10;         /* charcoal */
-      --bg-soft:#151516;
-      --text:#e9e9ea;
-      --muted:#b8b9bd;
-      --card:#151516;
-      --border:#232327;
-      --brand:#bfa36f;      /* gold-ish accent */
-      --brand-2:#e5d6ad;
-      --surface:#101012;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --bg:#0b0c0f;
+      --bg-soft:#121316;
+      --surface:#0e1013;
+      --card:#111317;
+      --border:#1d2126;
+      --text:#e7e9ec;
+      --muted:#a0a7b1;
+
+      --brand:#9c8653;   /* brass */
+      --brand-2:#cbb680; /* soft brass */
+
+      --shadow:0 8px 28px rgba(0,0,0,.28);
       --radius:16px;
       --maxw:1200px;
+
+      --font-body: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", sans-serif;
+      --font-display: "Plus Jakarta Sans", Inter, sans-serif;
+      --leading:1.6;
+
+      --ease:cubic-bezier(.2,.7,.2,1);
+      --dur:.22s;
     }
     [data-theme="light"]{
-      --bg:#f6f6f7;
+      --bg:#f7f8f9;
       --bg-soft:#ffffff;
-      --text:#17181a;
-      --muted:#5b5f66;
+      --surface:#f2f4f7;
       --card:#ffffff;
-      --border:#e8e9ec;
-      --surface:#f6f6f7;
-      --shadow: 0 8px 22px rgba(17,17,17,.08);
+      --border:#e6e8ed;
+      --text:#14171a;
+      --muted:#5b636e;
+      --shadow:0 10px 24px rgba(20,23,26,.08);
     }
+
     body{
       background:var(--bg);
       color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans",sans-serif;
-      line-height:1.6;
+      font-family:var(--font-body);
+      line-height:var(--leading);
+      letter-spacing:.01em;
     }
+
+    /* ===== Ikon Google ===== */
+    .icon {
+      font-family:'Material Symbols Rounded';
+      font-variation-settings:"FILL" 0;
+      font-size:20px;
+      line-height:1;
+      display:inline-flex;align-items:center;justify-content:center;
+      width:24px;height:24px;
+    }
+    .icon-24{width:24px;height:24px}
+
     /* ===== Header & Nav ===== */
     .header{
       position:sticky;top:0;z-index:50;
-      backdrop-filter:saturate(1.2) blur(10px);
-      background:color-mix(in oklab, var(--bg) 75%, transparent);
+      backdrop-filter:saturate(1.1) blur(8px);
+      background:color-mix(in oklab, var(--bg) 85%, transparent);
       border-bottom:1px solid var(--border);
     }
     .container{max-width:var(--maxw);margin-inline:auto;padding:0 20px}
-    .nav{
-      display:flex;align-items:center;gap:16px;justify-content:space-between;height:64px;
-    }
+    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;height:64px}
     .brand{display:flex;align-items:center;gap:12px}
     .logo{
       width:40px;height:40px;border-radius:10px;
       background:linear-gradient(135deg,var(--brand),var(--brand-2));
       display:grid;place-items:center;color:#111;font-weight:800;box-shadow:var(--shadow)
     }
-    .brand h1{
-      font:700 18px/1 "Plus Jakarta Sans",Inter,sans-serif;letter-spacing:.2px;margin:0
+    .brand-title{
+      margin:0;font-weight:700;
+      font-family:var(--font-display);
+      font-size:18px;letter-spacing:.2px;
     }
     .menu{display:flex;gap:14px;align-items:center}
     .menu a{
-      padding:8px 12px;border-radius:10px;border:1px solid transparent;color:var(--muted)
+      padding:8px 12px;border-radius:10px;border:1px solid transparent;color:var(--muted);
+      transition:color var(--dur) var(--ease), border-color var(--dur) var(--ease);
     }
-    .menu a:hover{border-color:var(--border);color:var(--text)}
+    .menu a:hover,.menu a:focus-visible{border-color:var(--border);color:var(--text)}
     .btn{
       display:inline-flex;align-items:center;gap:10px;
       padding:10px 14px;border-radius:12px;border:1px solid var(--border);
-      background:var(--bg-soft);color:var(--text);box-shadow:var(--shadow)
+      background:var(--bg-soft);color:var(--text);box-shadow:var(--shadow);
+      transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+      min-height:44px;
     }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 12px 28px rgba(0,0,0,.22); }
     .btn--brand{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#111;border-color:transparent}
     .btn--ghost{background:transparent}
-    .hamburger{display:none;background:transparent;border:0;padding:8px;border-radius:10px}
-    .hamburger:focus-visible{outline:2px solid var(--brand)}
-    .icon-24{width:24px;height:24px}
-    /* Mobile menu panel */
+    .hamburger{display:none;background:transparent;border:0;padding:8px;border-radius:10px;min-height:44px}
+    .hamburger:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+    /* Mobile drawer */
     .drawer{
       position:fixed;inset:0 0 0 auto;transform:translateX(100%);
-      transition:transform .28s ease;z-index:60;background:var(--bg);width:min(88vw,360px);
+      transition:transform var(--dur) var(--ease);z-index:60;background:var(--bg);width:min(88vw,360px);
       border-left:1px solid var(--border);padding:18px
     }
     .drawer.open{transform:none}
     .drawer a{display:block;padding:12px 10px;border-radius:10px;color:var(--text)}
     .drawer a:hover{background:var(--bg-soft)}
     .drawer .group{border-top:1px dashed var(--border);margin-top:10px;padding-top:10px}
+
+    /* ===== Skip link ===== */
+    .skip-link{
+      position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    }
+    .skip-link:focus{
+      left:16px;top:16px;width:auto;height:auto;background:var(--card);padding:10px 12px;border-radius:8px;z-index:9999;
+    }
+
     /* ===== Hero ===== */
-    .hero{padding:56px 0 28px}
+    .hero{padding:72px 0 36px}
     .stack{display:grid;gap:22px}
     .kicker{color:var(--brand);font-weight:600;letter-spacing:.3px}
     .title{
-      font:700 clamp(30px,3.4vw,46px)/1.12 "Plus Jakarta Sans",Inter,sans-serif;
-      letter-spacing:.4px;margin:0
+      font:700 clamp(32px,3vw,44px)/1.15 var(--font-display);
+      letter-spacing:.2px;margin:0
     }
     .subtitle{color:var(--muted);max-width:62ch}
     .hero-card{
       margin-top:8px;border:1px solid var(--border);border-radius:var(--radius);
-      background:radial-gradient(1200px 400px at 40% -20%, color-mix(in oklab,var(--brand-2) 16%, transparent), transparent 60%),
-                 var(--card);
+      background:
+        radial-gradient(1200px 400px at 40% -20%, color-mix(in oklab,var(--brand-2) 16%, transparent), transparent 60%),
+        var(--card);
       padding:22px;display:grid;gap:16px;box-shadow:var(--shadow)
     }
     .pill{
-      display:inline-flex;gap:10px;align-items:center;
+      display:inline-flex;gap:12px;align-items:center;flex-wrap:wrap;
       border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:var(--muted)
     }
+
     /* ===== Sections ===== */
-    section{padding:28px 0}
+    section{padding:36px 0}
     .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:14px}
-    .section-title{font:700 22px/1.2 "Plus Jakarta Sans",Inter,sans-serif;margin:0}
+    .section-title{
+      font:700 clamp(18px,1.6vw,22px)/1.25 var(--font-display);
+      margin:0
+    }
+
     /* ===== Product grid ===== */
     .grid{display:grid;gap:14px}
     .card{
       border:1px solid var(--border);border-radius:14px;background:var(--card);
-      overflow:hidden;display:flex;flex-direction:column
+      overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);
+      transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+      content-visibility:auto;
     }
-    .card img{aspect-ratio:4/3;object-fit:cover;background:#0b0b0c}
+    .card:hover{ transform:translateY(-2px); }
+    .card img{aspect-ratio:4/3;object-fit:cover;background:#0b0c0f}
     .card .content{padding:14px;display:grid;gap:6px}
     .badge{font-size:12px;color:var(--muted)}
     .price{font-weight:600}
     .meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+
     /* ===== Feature list ===== */
     .features{display:grid;gap:12px}
     .feature{
       display:flex;gap:12px;padding:14px;border:1px dashed var(--border);border-radius:12px;background:var(--card)
     }
+
     /* ===== CTA strip ===== */
     .cta{
       display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
-      padding:16px;border:1px solid var(--border);border-radius:14px;background:linear-gradient(135deg, color-mix(in oklab,var(--brand) 24%, var(--card)), var(--card))
+      padding:16px;border:1px solid var(--border);border-radius:14px;
+      background:linear-gradient(135deg, color-mix(in oklab,var(--brand) 24%, var(--card)), var(--card))
     }
+
     /* ===== Footer ===== */
     footer{padding:32px 0;border-top:1px solid var(--border);color:var(--muted)}
     .cols{display:grid;gap:18px}
     .small{font-size:13px;color:var(--muted)}
+
     /* ===== Form ===== */
     .form{display:grid;gap:10px}
-    .field{
-      display:grid;gap:6px
-    }
+    .field{display:grid;gap:6px}
     .input, textarea{
       background:var(--bg-soft);color:var(--text);border:1px solid var(--border);
       padding:10px 12px;border-radius:10px
     }
-    .input:focus, textarea:focus{outline:2px solid var(--brand)}
+    .input:focus, textarea:focus{outline:2px solid var(--brand);outline-offset:2px}
+
     /* ===== Responsive ===== */
     @media (min-width:640px){
       .grid{grid-template-columns:repeat(2,1fr)}
@@ -166,18 +218,19 @@
       .menu{display:flex}
       .hamburger{display:none}
       .grid{grid-template-columns:repeat(3,1fr)}
-      .hero{padding:72px 0 36px}
     }
     @media (max-width:959.98px){
       .menu{display:none}
       .hamburger{display:inline-grid}
     }
-    /* ===== Accessibility ===== */
+
+    /* ===== Reduced motion ===== */
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
     }
+
     /* Focus ring util */
-    .focus-ring:focus-visible{outline:2px solid var(--brand)}
+    .focus-ring:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   </style>
 
   <!-- Schema.org: LocalBusiness/HardwareStore -->
@@ -196,46 +249,49 @@
       "postalCode":"12345",
       "addressCountry":"ID"
     },
-    "openingHours":[
-      "Mo-Sa 08:00-17:00",
-      "Su 09:00-15:00"
-    ],
+    "openingHours":["Mo-Sa 08:00-17:00","Su 09:00-15:00"],
     "priceRange":"$$"
   }
   </script>
 </head>
+
 <body data-theme="dark">
+  <!-- Skip link -->
+  <a href="#main" class="skip-link">Lewati ke konten utama</a>
+
   <header class="header" aria-label="Navigasi utama">
     <div class="container">
       <nav class="nav">
         <div class="brand">
           <div class="logo" aria-hidden="true">RI</div>
-          <h1>Toko Besi <span style="opacity:.9">Rizky Ilahi</span></h1>
+          <!-- Brand di header pakai <p> agar H1 utama ada di hero -->
+          <p class="brand-title">Toko Besi <span style="opacity:.9">Rizky Ilahi</span></p>
         </div>
-        <div class="menu" role="menubar" aria-label="Menu utama">
-          <a href="#produk" role="menuitem">Produk</a>
-          <a href="#layanan" role="menuitem">Layanan</a>
-          <a href="#tentang" role="menuitem">Tentang</a>
-          <a href="#kontak" role="menuitem">Kontak</a>
+        <div class="menu" aria-label="Menu utama">
+          <a href="#produk">Produk</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#tentang">Tentang</a>
+          <a href="#kontak">Kontak</a>
           <button id="themeBtn" class="btn btn--ghost focus-ring" aria-label="Ubah tema" title="Ubah tema">
-            <svg class="icon-24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1Zm9 10a1 1 0 0 1-1 1h-2a1 1 0 1 1 0-2h2a1 1 0 0 1 1 1ZM6.22 4.81a1 1 0 0 1 1.41 0l1.41 1.41a1 1 0 1 1-1.41 1.41L6.22 6.22a1 1 0 0 1 0-1.41ZM3 13a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2H3Zm12.96 5.17a1 1 0 0 1 1.41 0l1.41 1.41a1 1 0 1 1-1.41 1.41l-1.41-1.41a1 1 0 0 1 0-1.41ZM4.22 18.78a1 1 0 0 1 1.41 0l1.41 1.41a1 1 0 0 1-1.41 1.41L4.22 20.2a1 1 0 0 1 0-1.41ZM16.96 4.81a1 1 0 0 1 1.41 0 1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 1 1-1.41-1.41l1.41-1.41ZM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" fill="currentColor"/></svg>
+            <span class="icon" aria-hidden="true">brightness_6</span>
             Tema
           </button>
           <a class="btn btn--brand" href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20saya%20butuh%20penawaran.">
-            <svg class="icon-24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v16l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg>
+            <span class="icon" aria-hidden="true">chat</span>
             Minta Penawaran
           </a>
         </div>
-        <button id="hamburger" class="hamburger focus-ring" aria-label="Buka menu">
-          <svg class="icon-24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+        <button id="hamburger" class="hamburger focus-ring" aria-label="Buka menu" aria-controls="drawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">menu</span>
         </button>
       </nav>
     </div>
+
     <div id="drawer" class="drawer" aria-hidden="true" aria-label="Panel menu">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
         <div class="brand"><div class="logo">RI</div><strong>Toko Besi Rizky Ilahi</strong></div>
-        <button id="closeDrawer" class="hamburger focus-ring" aria-label="Tutup menu">
-          <svg class="icon-24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.3 19.7 2.89 18.3 9.17 12 2.89 5.71 4.3 4.29l6.3 6.3 6.29-6.3z"/></svg>
+        <button id="closeDrawer" class="hamburger focus-ring" aria-label="Tutup menu" aria-controls="drawer">
+          <span class="icon" aria-hidden="true">close</span>
         </button>
       </div>
       <nav>
@@ -244,29 +300,47 @@
         <a href="#tentang">Tentang</a>
         <a href="#kontak">Kontak</a>
         <div class="group">
-          <a href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20saya%20butuh%20penawaran." class="btn btn--brand" style="width:100%;justify-content:center">Chat WhatsApp</a>
+          <a href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20saya%20butuh%20penawaran." class="btn btn--brand" style="width:100%;justify-content:center">
+            <span class="icon" aria-hidden="true">chat</span>
+            Chat WhatsApp
+          </a>
         </div>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="container">
         <div class="stack">
           <span class="kicker">Besi & Bahan Konstruksi • Stok Terjamin</span>
-          <h2 class="title">Bangun lebih pasti dengan <em>Toko Besi Rizky Ilahi</em></h2>
+          <h1 class="title">Bangun lebih pasti dengan <em>Toko Besi Rizky Ilahi</em></h1>
           <p class="subtitle">Kami menyediakan besi beton, holo, siku, plat, wiremesh, pipa, dan material konstruksi lain. Kualitas konsisten, takaran jujur, harga transparan, dan pengiriman cepat.</p>
+
+          <!-- Contoh hero image (opsional) -->
+          <!-- <img src="https://ik.imagekit.io/your_account/rizky-ilahi/hero.jpg?tr=w-1600" alt="" width="1600" height="900" decoding="async" fetchpriority="high" style="aspect-ratio:16/9;object-fit:cover;border-radius:16px"> -->
+
           <div class="hero-card">
-            <div class="pill">⏱️ Proses cepat • 🚚 Kirim dalam kota • 🧾 Faktur tersedia</div>
+            <div class="pill" aria-label="Keunggulan layanan">
+              <span class="icon" aria-hidden="true">schedule</span><span>Proses cepat</span>
+              <span class="icon" aria-hidden="true" style="margin-left:12px">local_shipping</span><span>Kirim dalam kota</span>
+              <span class="icon" aria-hidden="true" style="margin-left:12px">receipt_long</span><span>Faktur tersedia</span>
+            </div>
             <div class="cta">
               <strong>Butuh penawaran cepat?</strong>
               <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <a class="btn btn--brand" href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20tolong%20kirimkan%20price%20list.">Chat WhatsApp</a>
-                <a class="btn" href="#produk">Lihat Produk</a>
+                <a class="btn btn--brand" href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20tolong%20kirimkan%20price%20list.">
+                  <span class="icon" aria-hidden="true">chat_bubble</span>
+                  Chat WhatsApp
+                </a>
+                <a class="btn" href="#produk">
+                  <span class="icon" aria-hidden="true">grid_view</span>
+                  Lihat Produk
+                </a>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -274,76 +348,155 @@
     <section id="produk">
       <div class="container">
         <div class="section-head">
-          <h3 class="section-title">Produk Unggulan</h3>
-          <a class="btn btn--ghost" href="#kontak">Minta price list</a>
+          <h2 class="section-title">Produk Unggulan</h2>
+          <a class="btn btn--ghost" href="#kontak">
+            <span class="icon" aria-hidden="true">request_quote</span>
+            Minta price list
+          </a>
         </div>
 
-        <!-- Grid produk demo (ganti URL gambar ke ImageKit atau CDN Anda) -->
         <div class="grid" id="productGrid">
           <!-- Card 1 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1565022612021-8b8926bf87ea?q=80&w=1200&auto=format&fit=crop" alt="Besi Beton">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Besi Beton">
             <div class="content">
               <div class="badge">Besi Beton Polos/Ulir</div>
-              <h4 style="margin:0">Besi Beton 8–16 mm</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">Besi Beton 8–16 mm</h3>
               <div class="meta"><span>Standar SNI</span><span>Panjar OK</span><span>Cut-to-length</span></div>
               <div class="price">Rp — / batang</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20tanya%20harga%20Besi%20Beton%208-16mm.">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20tanya%20harga%20Besi%20Beton%208-16mm.">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
+
           <!-- Card 2 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1615631710783-7f5f0bbf6461?q=80&w=1200&auto=format&fit=crop" alt="Holo Kotak">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Holo Kotak">
             <div class="content">
               <div class="badge">Holo / Box</div>
-              <h4 style="margin:0">Holo 2x4 • 4x4</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">Holo 2x4 • 4x4</h3>
               <div class="meta"><span>Galvanis</span><span>Anti Karat</span></div>
               <div class="price">Rp — / batang</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Holo%202x4%20dan%204x4%20berapa%3F">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Holo%202x4%20dan%204x4%20berapa%3F">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
+
           <!-- Card 3 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1601121141340-2ee15b62f54a?q=80&w=1200&auto=format&fit=crop" alt="Plat Besi">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Plat Besi">
             <div class="content">
               <div class="badge">Plat Besi</div>
-              <h4 style="margin:0">Plat 1–10 mm</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">Plat 1–10 mm</h3>
               <div class="meta"><span>Potong CNC</span><span>Custom ukuran</span></div>
               <div class="price">Rp — / kg</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Plat%20Besi%201-10mm%20berapa%3F">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Plat%20Besi%201-10mm%20berapa%3F">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
+
           <!-- Card 4 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1200&auto=format&fit=crop" alt="Wiremesh">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/wiremesh.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/wiremesh.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/wiremesh.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/wiremesh.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Wiremesh">
             <div class="content">
               <div class="badge">Wiremesh</div>
-              <h4 style="margin:0">M6 • M8 • M10</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">M6 • M8 • M10</h3>
               <div class="meta"><span>Full ukuran</span><span>Ready stok</span></div>
               <div class="price">Rp — / lembar</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Wiremesh%20M6%2FM8%2FM10%20berapa%3F">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Wiremesh%20M6%2FM8%2FM10%20berapa%3F">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
+
           <!-- Card 5 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1581299324635-89f8d0c31f47?q=80&w=1200&auto=format&fit=crop" alt="Pipa Besi">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/pipa.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/pipa.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/pipa.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/pipa.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Pipa Besi">
             <div class="content">
               <div class="badge">Pipa Besi</div>
-              <h4 style="margin:0">Pipa Schedule</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">Pipa Schedule</h3>
               <div class="meta"><span>Seamless/Welded</span></div>
               <div class="price">Rp — / batang</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Pipa%20Schedule%20berapa%3F">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Pipa%20Schedule%20berapa%3F">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
+
           <!-- Card 6 -->
           <article class="card">
-            <img loading="lazy" src="https://images.unsplash.com/photo-1613687647556-8133a9288f2e?q=80&w=1200&auto=format&fit=crop" alt="Besi Siku">
+            <img
+              loading="lazy" decoding="async"
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/siku.jpg?tr=w-800"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/siku.jpg?tr=w-480 480w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/siku.jpg?tr=w-800 800w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/siku.jpg?tr=w-1200 1200w"
+              sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+              width="800" height="600"
+              alt="Besi Siku">
             <div class="content">
               <div class="badge">Besi Siku</div>
-              <h4 style="margin:0">Siku 3x3 • 4x4</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">Siku 3x3 • 4x4</h3>
               <div class="meta"><span>Hot rolled</span></div>
               <div class="price">Rp — / batang</div>
-              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Besi%20Siku%203x3%20dan%204x4%20berapa%3F">Tanya harga</a>
+              <a class="btn" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Besi%20Siku%203x3%20dan%204x4%20berapa%3F">
+                <span class="icon" aria-hidden="true">price_check</span>
+                Tanya harga
+              </a>
             </div>
           </article>
         </div>
@@ -353,35 +506,35 @@
     <section id="layanan">
       <div class="container">
         <div class="section-head">
-          <h3 class="section-title">Layanan</h3>
+          <h2 class="section-title">Layanan</h2>
         </div>
         <div class="features">
           <div class="feature">
-            <div class="logo" style="width:36px;height:36px">✓</div>
+            <span class="icon" aria-hidden="true">support_agent</span>
             <div>
               <strong>Konsultasi kebutuhan proyek</strong>
               <div class="small">Bantu hitung spek & volume material supaya efisien dan aman.</div>
             </div>
           </div>
           <div class="feature">
-            <div class="logo" style="width:36px;height:36px">⛓</div>
+            <span class="icon" aria-hidden="true">construction</span>
             <div>
-              <strong>Cutting & bending</strong>
+              <strong>Cutting &amp; bending</strong>
               <div class="small">Pemotongan besi/plat sesuai ukuran, bending sederhana, siap pakai.</div>
             </div>
           </div>
           <div class="feature">
-            <div class="logo" style="width:36px;height:36px">🚚</div>
+            <span class="icon" aria-hidden="true">local_shipping</span>
             <div>
               <strong>Pengantaran cepat</strong>
-              <div class="small">Armada sendiri/partner. Same-day dalam kota (syarat & ketentuan).</div>
+              <div class="small">Armada sendiri/partner. Same-day dalam kota (syarat &amp; ketentuan).</div>
             </div>
           </div>
           <div class="feature">
-            <div class="logo" style="width:36px;height:36px">🧾</div>
+            <span class="icon" aria-hidden="true">receipt_long</span>
             <div>
-              <strong>Faktur & pembayaran fleksibel</strong>
-              <div class="small">Invoice resmi, pembayaran transfer/tunai, nota rinci & transparan.</div>
+              <strong>Faktur &amp; pembayaran fleksibel</strong>
+              <div class="small">Invoice resmi, transfer/tunai, nota rinci &amp; transparan.</div>
             </div>
           </div>
         </div>
@@ -391,7 +544,7 @@
     <section id="tentang">
       <div class="container">
         <div class="section-head">
-          <h3 class="section-title">Tentang Kami</h3>
+          <h2 class="section-title">Tentang Kami</h2>
         </div>
         <div class="cols">
           <div>
@@ -409,7 +562,10 @@
               <div>Minggu: 09:00–15:00</div>
               <div>Alamat: Jl. Contoh No. 123, Kota Anda</div>
             </div>
-            <a class="btn btn--brand" href="https://maps.google.com/?q=Jl.%20Contoh%20No.%20123" target="_blank" rel="noopener">Buka Google Maps</a>
+            <a class="btn btn--brand" href="https://maps.google.com/?q=Jl.%20Contoh%20No.%20123" target="_blank" rel="noopener">
+              <span class="icon" aria-hidden="true">map</span>
+              Buka Google Maps
+            </a>
           </div>
         </div>
       </div>
@@ -418,7 +574,7 @@
     <section id="kontak">
       <div class="container">
         <div class="section-head">
-          <h3 class="section-title">Minta Penawaran</h3>
+          <h2 class="section-title">Minta Penawaran</h2>
         </div>
         <div class="cols">
           <form class="form" onsubmit="return sendWA(this)">
@@ -434,7 +590,10 @@
               <label for="catatan">Catatan</label>
               <textarea id="catatan" name="catatan" rows="3" placeholder="Ukuran, pengantaran, dll."></textarea>
             </div>
-            <button class="btn btn--brand" type="submit">Kirim via WhatsApp</button>
+            <button class="btn btn--brand" type="submit">
+              <span class="icon" aria-hidden="true">send</span>
+              Kirim via WhatsApp
+            </button>
           </form>
           <div class="hero-card">
             <div class="pill">Kontak</div>
@@ -477,18 +636,21 @@
       localStorage.setItem('theme', next);
     });
 
-    // Hamburger / Drawer
+    // Hamburger / Drawer (aksesibilitas: aria-expanded + Esc)
     const drawer = document.getElementById('drawer');
     const hamburger = document.getElementById('hamburger');
     const closeDrawer = document.getElementById('closeDrawer');
-    const toggleDrawer = (open) => {
+
+    function toggleDrawer(open){
       drawer.classList.toggle('open', open);
-      drawer.setAttribute('aria-hidden', !open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      hamburger.setAttribute('aria-expanded', String(open));
       document.body.style.overflow = open ? 'hidden' : '';
-    };
+    }
     hamburger?.addEventListener('click', () => toggleDrawer(true));
     closeDrawer?.addEventListener('click', () => toggleDrawer(false));
     drawer?.addEventListener('click', (e)=>{ if(e.target === drawer){ toggleDrawer(false); } });
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') toggleDrawer(false); });
 
     // Form -> WhatsApp deep link
     function sendWA(form){
@@ -501,10 +663,10 @@
       return false;
     }
 
-    // OPTIONAL: Contoh integrasi Google Sheets (CSV publish) untuk grid produk
+    // OPTIONAL: Integrasi Google Sheets (CSV publish) untuk grid produk
     // 1) Publish Google Sheet ke web -> dapatkan URL CSV
     // 2) Kolom: image,name,badge,meta,price,wa
-    // 3) Set CSV_URL di bawah dan uncomment fetchCSV();
+    // 3) Set CSV_URL di bawah dan aktifkan fetchCSV();
     const CSV_URL = ''; // mis: 'https://docs.google.com/spreadsheets/d/e/xxx/pub?gid=0&single=true&output=csv'
     async function fetchCSV(){
       if(!CSV_URL) return;
@@ -519,13 +681,17 @@
         const meta = (item.meta||'').split('|').map(s=>s.trim()).filter(Boolean).map(s=>`<span>${s}</span>`).join('');
         grid.insertAdjacentHTML('beforeend', `
           <article class="card">
-            <img loading="lazy" src="${item.image}" alt="${item.name}">
+            <img loading="lazy" decoding="async"
+                 src="${item.image}?tr=w-800"
+                 srcset="${item.image}?tr=w-480 480w, ${item.image}?tr=w-800 800w, ${item.image}?tr=w-1200 1200w"
+                 sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
+                 width="800" height="600" alt="${item.name}">
             <div class="content">
               <div class="badge">${item.badge||''}</div>
-              <h4 style="margin:0">${item.name||''}</h4>
+              <h3 style="margin:0;font-family:var(--font-display);font-weight:700">${item.name||''}</h3>
               <div class="meta">${meta}</div>
               <div class="price">${item.price||''}</div>
-              <a class="btn" href="${item.wa||'#'}">Tanya harga</a>
+              <a class="btn" href="${item.wa||'#'}"><span class="icon" aria-hidden="true">price_check</span>Tanya harga</a>
             </div>
           </article>
         `);
