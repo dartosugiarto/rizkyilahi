@@ -3,48 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Toko Besi Rizky Ilahi — Bahan Bangunan & Konstruksi</title>
-  <meta name="description" content="Besi beton, holo, siku, plat, wiremesh, pipa. Harga jelas, stok terjamin, kirim cepat.">
-  <meta name="theme-color" content="#0a0b0d" />
-  <!-- Fonts -->
+  <title>Toko Besi Rizky Ilahi — Beranda</title>
+  <meta name="description" content="Toko Besi Rizky Ilahi. Produk utama pilihan—kualitas konsisten, harga transparan, kirim cepat.">
+  <meta name="theme-color" content="#0b0c0e" />
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&family=Material+Symbols+Rounded:FILL@0..1&display=swap" rel="stylesheet">
-  <!-- CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700&family=Material+Symbols+Rounded:FILL@0..1&display=swap" rel="stylesheet">
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"HardwareStore",
-    "name":"Toko Besi Rizky Ilahi",
-    "image":"https://ik.imagekit.io/your_account/rizky-ilahi/cover.jpg",
-    "url":"https://contoh-domainmu.id",
-    "telephone":"+62 812-3456-7890",
-    "address":{"@type":"PostalAddress","streetAddress":"Jl. Contoh No. 123","addressLocality":"Kota Anda","postalCode":"12345","addressCountry":"ID"},
-    "openingHours":["Mo-Sa 08:00-17:00","Su 09:00-15:00"],
-    "priceRange":"$$"
-  }
-  </script>
 </head>
-<body>
+<body data-page="home">
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
   <header class="header" aria-label="Navigasi utama">
     <div class="container nav">
       <div class="brand">
         <div class="logo" aria-hidden="true">RI</div>
-        <p class="brand-title">Toko Besi <span class="muted">Rizky Ilahi</span></p>
+        <p class="brand-title">Toko Besi Rizky Ilahi</p>
       </div>
 
       <nav class="menu" aria-label="Menu utama">
-        <a href="#produk">Produk</a>
-        <a href="#layanan">Layanan</a>
-        <a href="#tentang">Tentang</a>
-        <a href="#kontak">Kontak</a>
-        <a class="btn btn--accent" href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20saya%20butuh%20penawaran.">
-          <span class="icon">chat</span> Minta Penawaran
-        </a>
+        <a href="index.html" data-nav="home">Beranda</a>
+        <a href="produk.html" data-nav="produk">Produk</a>
+        <a href="layanan.html" data-nav="layanan">Layanan</a>
+        <a href="tentang.html" data-nav="tentang">Tentang</a>
+        <a href="kontak.html" class="btn btn--accent"><span class="icon">chat</span> Minta Penawaran</a>
       </nav>
 
       <button id="hamburger" class="hamburger" aria-label="Buka menu" aria-controls="drawer" aria-expanded="false">
@@ -63,192 +47,44 @@
         </button>
       </div>
       <nav class="drawer-nav">
-        <a href="#produk">Produk</a>
-        <a href="#layanan">Layanan</a>
-        <a href="#tentang">Tentang</a>
-        <a href="#kontak">Kontak</a>
-        <a class="btn btn--accent w-100" href="https://wa.me/6281234567890?text=Halo%20Toko%20Besi%20Rizky%20Ilahi%2C%20saya%20butuh%20penawaran.">
-          <span class="icon">chat</span> Chat WhatsApp
-        </a>
+        <a href="index.html" data-nav="home">Beranda</a>
+        <a href="produk.html" data-nav="produk">Produk</a>
+        <a href="layanan.html" data-nav="layanan">Layanan</a>
+        <a href="tentang.html" data-nav="tentang">Tentang</a>
+        <a href="kontak.html" class="btn btn--accent w-100"><span class="icon">chat</span> Chat WhatsApp</a>
       </nav>
     </aside>
     <div id="backdrop" class="backdrop" hidden></div>
   </header>
 
   <main id="main">
-    <section class="hero">
+    <section class="hero hero--tight">
       <div class="container">
-        <p class="kicker">Besi & Bahan Konstruksi • Stok Terjamin</p>
-        <h1 class="title">Bangun lebih pasti dengan <em>Toko Besi Rizky Ilahi</em></h1>
-        <p class="subtitle">Besi beton, holo, siku, plat, wiremesh, pipa. Kualitas konsisten, harga transparan, kirim cepat.</p>
+        <h1 class="title">Bangun Lebih Pasti</h1>
+        <p class="subtitle">Produk utama pilihan—kualitas konsisten, harga transparan, pengiriman cepat.</p>
 
-        <div class="hero-cta">
-          <a class="btn btn--accent" href="https://wa.me/6281234567890?text=Halo%2C%20tolong%20kirimkan%20price%20list.">
-            <span class="icon">chat_bubble</span> Chat WhatsApp
-          </a>
-          <a class="btn" href="#produk"><span class="icon">grid_view</span> Lihat Produk</a>
-        </div>
-
-        <ul class="benefits" aria-label="Keunggulan">
-          <li><span class="icon">schedule</span> Proses cepat</li>
-          <li><span class="icon">local_shipping</span> Kirim dalam kota</li>
-          <li><span class="icon">receipt_long</span> Faktur tersedia</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="produk">
-      <div class="container section-head">
-        <h2 class="h2">Produk Unggulan</h2>
-        <a class="link" href="#kontak"><span class="icon">request_quote</span> Minta price list</a>
-      </div>
-
-      <div class="container grid" id="productGrid">
-        <!-- Contoh card; sisanya bisa diisi via Google Sheet/CSV (lihat app.js) -->
-        <article class="card">
-          <img
-            loading="lazy" decoding="async"
-            src="https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-900"
-            srcset="
-              https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-540 540w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-900 900w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-1200 1200w"
-            sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
-            width="900" height="675" alt="Besi Beton">
-          <div class="content">
+        <!-- Produk unggulan (satu kartu) -->
+        <article class="feature-card">
+          <div class="media" data-kenburns>
+            <img
+              src="https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-1200"
+              srcset="
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-720 720w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-1200 1200w,
+                https://ik.imagekit.io/your_account/rizky-ilahi/besi-beton.jpg?tr=w-1600 1600w"
+              sizes="(max-width:768px) 100vw, 960px"
+              width="1200" height="800" alt="Besi Beton 8–16 mm" decoding="async" fetchpriority="high">
+          </div>
+          <div class="details">
             <p class="badge">Besi Beton Polos/Ulir</p>
-            <h3 class="h3">Besi Beton 8–16 mm</h3>
-            <p class="meta">Standar SNI • Panjar OK • Cut-to-length</p>
+            <h2 class="h2">Besi Beton 8–16 mm</h2>
+            <p class="muted">Standar SNI • Panjar OK • Cut-to-length</p>
             <div class="actions">
-              <a class="btn btn--ghost" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Besi%20Beton%208-16mm%20berapa%3F">
-                <span class="icon">price_check</span> Tanya harga
-              </a>
+              <a class="btn btn--accent" href="kontak.html"><span class="icon">request_quote</span> Minta Penawaran</a>
+              <a class="btn btn--ghost" href="produk.html"><span class="icon">grid_view</span> Lihat Semua Produk</a>
             </div>
           </div>
         </article>
-
-        <!-- Duplikasi card di bawah sesuai kebutuhan atau biarkan diisi CSV -->
-        <article class="card">
-          <img loading="lazy" decoding="async"
-            src="https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-900"
-            srcset="
-              https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-540 540w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-900 900w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/holo.jpg?tr=w-1200 1200w"
-            sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
-            width="900" height="675" alt="Holo Kotak">
-          <div class="content">
-            <p class="badge">Holo / Box</p>
-            <h3 class="h3">Holo 2x4 • 4x4</h3>
-            <p class="meta">Galvanis • Anti karat</p>
-            <div class="actions">
-              <a class="btn btn--ghost" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Holo%202x4%20dan%204x4%20berapa%3F">
-                <span class="icon">price_check</span> Tanya harga
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img loading="lazy" decoding="async"
-            src="https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-900"
-            srcset="
-              https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-540 540w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-900 900w,
-              https://ik.imagekit.io/your_account/rizky-ilahi/plat.jpg?tr=w-1200 1200w"
-            sizes="(max-width:639px) 100vw, (max-width:959px) 50vw, 33vw"
-            width="900" height="675" alt="Plat Besi">
-          <div class="content">
-            <p class="badge">Plat Besi</p>
-            <h3 class="h3">Plat 1–10 mm</h3>
-            <p class="meta">Potong CNC • Custom ukuran</p>
-            <div class="actions">
-              <a class="btn btn--ghost" href="https://wa.me/6281234567890?text=Halo%2C%20harga%20Plat%201-10mm%20berapa%3F">
-                <span class="icon">price_check</span> Tanya harga
-              </a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="layanan">
-      <div class="container section-head">
-        <h2 class="h2">Layanan</h2>
-      </div>
-      <div class="container features">
-        <div class="feature">
-          <span class="icon">support_agent</span>
-          <div><strong>Konsultasi proyek</strong><p class="muted">Hitung spek & volume material yang presisi.</p></div>
-        </div>
-        <div class="feature">
-          <span class="icon">construction</span>
-          <div><strong>Cutting & bending</strong><p class="muted">Pemotongan besi/plat, bending sederhana.</p></div>
-        </div>
-        <div class="feature">
-          <span class="icon">local_shipping</span>
-          <div><strong>Pengantaran cepat</strong><p class="muted">Same-day dalam kota (syarat & ketentuan).</p></div>
-        </div>
-        <div class="feature">
-          <span class="icon">receipt_long</span>
-          <div><strong>Faktur resmi</strong><p class="muted">Pembayaran fleksibel, nota rinci & transparan.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="tentang">
-      <div class="container section-head">
-        <h2 class="h2">Tentang</h2>
-      </div>
-      <div class="container cols">
-        <div>
-          <p><strong>Toko Besi Rizky Ilahi</strong> menjadi mitra pengadaan material untuk rumah hingga proyek komersial. Fokus pada ketepatan ukuran, kejujuran berat, dan pengiriman tepat waktu.</p>
-          <ul class="muted">
-            <li>Standar SNI/Equivalent</li>
-            <li>Stok stabil, ukuran lengkap</li>
-            <li>Harga fair, update periodik</li>
-          </ul>
-        </div>
-        <div class="note">
-          <p class="badge">Jam Operasional</p>
-          <p>Senin–Sabtu: 08:00–17:00 • Minggu: 09:00–15:00</p>
-          <p>Alamat: Jl. Contoh No. 123, Kota Anda</p>
-          <a class="btn btn--accent" target="_blank" rel="noopener" href="https://maps.google.com/?q=Jl.%20Contoh%20No.%20123">
-            <span class="icon">map</span> Buka Google Maps
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontak">
-      <div class="container section-head">
-        <h2 class="h2">Minta Penawaran</h2>
-      </div>
-      <div class="container cols">
-        <form class="form" onsubmit="return sendWA(this)">
-          <label class="field">
-            <span>Nama</span>
-            <input id="nama" name="nama" class="input" placeholder="Nama Anda" required>
-          </label>
-          <label class="field">
-            <span>Produk</span>
-            <input id="produk" name="produk" class="input" placeholder="Contoh: Wiremesh M8, 20 lembar" required>
-          </label>
-          <label class="field">
-            <span>Catatan</span>
-            <textarea id="catatan" name="catatan" rows="3" class="input" placeholder="Ukuran, pengantaran, dll."></textarea>
-          </label>
-          <button class="btn btn--accent" type="submit">
-            <span class="icon">send</span> Kirim via WhatsApp
-          </button>
-        </form>
-
-        <div class="note">
-          <p class="badge">Kontak</p>
-          <p class="muted">Telepon/WA: <a href="https://wa.me/6281234567890">+62 812-3456-7890</a></p>
-          <p class="muted">Email: <a href="mailto:admin@rizkyilahi-besi.id">admin@rizkyilahi-besi.id</a></p>
-          <p class="muted">Instagram: <a href="#">@rizkyilahi.besi</a></p>
-        </div>
       </div>
     </section>
   </main>
@@ -263,7 +99,6 @@
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="app.js"></script>
 </body>
 </html>
